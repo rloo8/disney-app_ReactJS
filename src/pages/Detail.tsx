@@ -4,15 +4,22 @@ import { fetchCharacterDetail } from "../api";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
-const CharacterContainer = styled.div`
-  display: flex;
-  justify-content: center;
+const FlexContainer = styled.div`
+  overflow-y: auto;
+  width: 80%;
+  padding: 20px;
+`;
+const Loading = styled.h2`
+  font-family: "Waltograph", sans-serif;
+  font-family: "Waltograph UI", sans-serif;
+  font-size: 30px;
+  text-align: center;
+  padding: 30px 0;
 `;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 80%;
 `;
 const CharacterImg = styled.img`
   width: 250px;
@@ -38,14 +45,19 @@ const ButtonBox = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: 15px;
+  padding: 15px 0;
 `;
 const Button = styled.div`
   background-color: #617bb6;
   border-right: 3px solid #2b458a;
   border-bottom: 3px solid #2b458a;
   color: #fff;
-  padding: 10px;
+  padding: 10px 15px;
+  &:hover {
+    background-color: #2b458a;
+    border-right: 3px solid #617bb6;
+    border-bottom: 3px solid #617bb6;
+  }
 `;
 
 interface ICharacter {
@@ -64,9 +76,9 @@ function Detail() {
   );
 
   return (
-    <CharacterContainer>
+    <FlexContainer>
       {isLoading ? (
-        <h2>Loading...</h2>
+        <Loading>Loading...</Loading>
       ) : (
         <Container>
           <CharacterImg src={data?.imageUrl} />
@@ -77,16 +89,16 @@ function Detail() {
             ))}
           </Films>
           <ButtonBox>
-            <Button>
-              <Link to="/">◀ Back</Link>
-            </Button>
-            <Button>
-              <a href={data?.sourceUrl}>More ▶</a>
-            </Button>
+            <Link to="/">
+              <Button>◀ Back</Button>
+            </Link>
+            <Link to={`${data?.sourceUrl}`}>
+              <Button>More ▶</Button>
+            </Link>
           </ButtonBox>
         </Container>
       )}
-    </CharacterContainer>
+    </FlexContainer>
   );
 }
 export default Detail;

@@ -4,7 +4,6 @@ import { ThemeProvider } from "styled-components";
 import { RouterProvider } from "react-router-dom";
 import { createGlobalStyle } from "styled-components";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { theme } from "./theme";
 import router from "./Router";
 
 const root = ReactDOM.createRoot(
@@ -67,7 +66,7 @@ table {
 }
 body {
   font-weight: 400;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'NeoDunggeunmo';
 }
 a {
   text-decoration:none;
@@ -78,10 +77,8 @@ a {
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <RouterProvider router={router} />
-      </ThemeProvider>
+      <GlobalStyle />
+      <RouterProvider router={router} />
     </QueryClientProvider>
   </React.StrictMode>
 );

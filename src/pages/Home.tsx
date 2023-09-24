@@ -3,6 +3,13 @@ import styled from "styled-components";
 import { fetchCharacter } from "../api";
 import { Link } from "react-router-dom";
 
+const Loading = styled.h2`
+  font-family: "Waltograph", sans-serif;
+  font-family: "Waltograph UI", sans-serif;
+  font-size: 30px;
+  text-align: center;
+  padding: 30px 0;
+`;
 const Title = styled.div`
   background-color: #617bb6;
   border-right: 5px solid #2b458a;
@@ -23,6 +30,7 @@ const CharacterList = styled.ul`
   box-sizing: border-box;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  padding: 20px;
 `;
 const Character = styled.li`
   display: flex;
@@ -42,8 +50,14 @@ const Character = styled.li`
 const ImgClip = styled.div`
   height: 80%;
   width: 200px;
-  border-radius: 50%;
   overflow: hidden;
+`;
+const Img = styled.img`
+  width: 100%;
+`;
+const Name = styled.p`
+  font-size: 20px;
+  padding: 10px;
 `;
 
 interface ICharacters {
@@ -61,7 +75,10 @@ function Home() {
   return (
     <>
       {isLoading ? (
-        <h2>Loading...</h2>
+        <>
+          <Title>Characters</Title>
+          <Loading>Loading...</Loading>
+        </>
       ) : (
         <>
           <Title>Characters</Title>
@@ -70,9 +87,9 @@ function Home() {
               <Link to={`characters/${character.id}`} key={character.id}>
                 <Character>
                   <ImgClip>
-                    <img src={character.imageUrl} alt={character.name} />
+                    <Img src={character.imageUrl} alt={character.name} />
                   </ImgClip>
-                  <p>{character.name}</p>
+                  <Name>{character.name}</Name>
                 </Character>
               </Link>
             ))}

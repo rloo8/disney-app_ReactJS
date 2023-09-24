@@ -20,6 +20,9 @@ const FixedBox = styled.div`
   width: 80%;
   height: 75vh;
   padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 function App() {
